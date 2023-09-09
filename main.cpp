@@ -1,7 +1,8 @@
 #include <iostream>
 #include <random>
+#include <vector>
 
-void countElements(int pInt[250], int count);
+void countElements(std::vector<int> data);
 
 int main() {
 
@@ -17,8 +18,7 @@ int main() {
     std::cout << "Enter Maximum Number" << std::endl;
     std::cin >> max;
 
-    int guessArr [max];
-    int guessCount = 0;
+    std::vector<int> guessArr;
 
     // generate a random number ranging from min to max
     std::random_device rd;
@@ -36,8 +36,7 @@ int main() {
         std::cin>> guess;
 
         // update results of guess
-        guessArr[guessCount] = guess;
-        guessCount ++;
+        guessArr.push_back(guess);
         if (guess == random) {
             std::cout << "Correct guess" << std::endl;
             break;
@@ -51,16 +50,16 @@ int main() {
     }
 
     // print out results inputted into the system
-    countElements(guessArr, guessCount);
+    countElements(guessArr);
     std::cout << "\n";
 
     return 0;
 
 }
 
-void countElements(int pInt[250], int count) {
+void countElements(std::vector<int> data) {
     std:: cout << "INPUT DETAILS ARE " << std::endl;
-    for (int i = 0; i < count; i++) {
-        std::cout<< pInt[i] << "\t";
+    for (int i = 0; i < data.size(); i++) {
+        std::cout<< data[i] << "\t";
     }
 }
