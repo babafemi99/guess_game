@@ -1,15 +1,16 @@
 #include <iostream>
 #include <random>
-#include <vector>
+#include <vector>//
+#include <array>
 
-void countElements(std::vector<int> data);
+void countElements(std::array<int, 251> data, int size);
 
 int main() {
 
     int random;
     int min;
     int max;
-
+    int count =0;
 
 
     // get min and max random numbers from user.
@@ -18,7 +19,7 @@ int main() {
     std::cout << "Enter Maximum Number" << std::endl;
     std::cin >> max;
 
-    std::vector<int> guessArr;
+    std::array<int, 251> guessArr{};
 
     // generate a random number ranging from min to max
     std::random_device rd;
@@ -36,12 +37,11 @@ int main() {
         std::cin>> guess;
 
         // update results of guess
-        guessArr.push_back(guess);
+        guessArr[count++] = guess;
         if (guess == random) {
             std::cout << "Correct guess" << std::endl;
             break;
         } else if ( guess > random) {
-
             std::cout << "Wrong guess. Too high, try again" << std::endl;
         } else {
 
@@ -50,16 +50,16 @@ int main() {
     }
 
     // print out results inputted into the system
-    countElements(guessArr);
+    countElements(guessArr, count);
     std::cout << "\n";
 
     return 0;
 
 }
 
-void countElements(std::vector<int> data) {
+void countElements(std::array<int, 251> data, int size) {
     std:: cout << "INPUT DETAILS ARE " << std::endl;
-    for (int i = 0; i < data.size(); i++) {
+    for (int i = 0; i < size; i++) {
         std::cout<< data[i] << "\t";
     }
 }
